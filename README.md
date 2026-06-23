@@ -1,36 +1,91 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# GoPlanner
+
+GoPlanner is a Next.js travel planning web app for discovering Australian destinations, saving favorite attractions, and generating a personalized trip plan from the user's dates, group details, budget, and selected places.
+
+![GoPlanner architecture](./public/docs/architecture-diagram.png)
+
+## Features
+
+- Destination guidebook for Melbourne, Sydney, Brisbane, and Perth
+- Attraction browsing with city-specific pages and image-rich cards
+- User authentication, profile management, and avatar upload
+- Favorite attraction saving backed by MongoDB
+- Trip detail form with local autosave
+- Smart planning page that combines trip details and selected attractions into an itinerary
+
+## Tech Stack
+
+- **Frontend:** Next.js 15, React 19, TypeScript, Tailwind CSS
+- **Backend:** Next.js API routes, Node.js
+- **Database:** MongoDB with Mongoose
+- **Auth:** JWT-based local API routes
+- **Deployment target:** AWS Amplify / AWS hosting flow shown in the architecture guide
+
+## Project Documentation
+
+The full website guidebook is stored as a standalone PDF:
+
+- [OpenGate34 Website Guidebook](./docs/opengate34-website-guidebook.pdf)
+
+PDFs usually should not be embedded directly into a README. A README works best as the quick project entry point, while larger guidebooks, reports, and handover documents should live in a `docs/` directory and be linked from here.
 
 ## Getting Started
 
-First, run the development server:
+Install dependencies:
+
+```bash
+npm install
+```
+
+Create a `.env.local` file in the project root:
+
+```bash
+MONGODB_URI=your_mongodb_connection_string
+JWT_SECRET=your_jwt_secret
+```
+
+Run the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Available Scripts
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run dev
+npm run build
+npm run start
+```
 
-## Learn More
+## App Routes
 
-To learn more about Next.js, take a look at the following resources:
+- `/` - home page and destination highlights
+- `/guidebook` - guidebook search
+- `/guidebook/melbourne` - Melbourne attractions
+- `/guidebook/sydney` - Sydney attractions
+- `/guidebook/brisbane` - Brisbane attractions
+- `/guidebook/perth` - Perth attractions
+- `/trip-planner` - trip details and preferences
+- `/smart-planning` - generated itinerary view
+- `/login`, `/signup`, `/profile` - user account pages
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Repository Structure
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```text
+src/app/          Next.js app routes and API routes
+src/components/   Shared React components
+src/contexts/     Auth and toast providers
+src/hooks/        Client-side data hooks
+src/lib/          Database helpers
+src/models/       Mongoose models
+public/           Static images and README assets
+docs/             Project guidebook and documentation
+```
 
-## Deploy on Vercel
+## Notes
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- `public/docs/architecture-diagram.png` is used by this README so it renders correctly on GitHub.
+- `docs/opengate34-website-guidebook.pdf` is kept as a linked project document instead of being duplicated in the README.
